@@ -1,2 +1,69 @@
 .post {
+  background: var(--gray-800);
+  border-radius: 8px;
+  padding: 2.5rem;
+}
+
+/* Espaçamanto entre os posts */
+/* + quer dizer => estilizar todo post que tenha outro post ANTES DELE */
+.post + .post {
+  margin-top: 2rem;
+}
+.content {
+  line-height: 1.6;
+  color: var(--gray-300);
+  margin-top: 1.5rem;
+}
+
+.content p {
+  margin-top: 1rem;
+}
+
+.content a {
+  color: var(--blue-500);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.content a:hover {
+  color: var(--blue-800);
+}
+
+.post > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post > header time {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authorInfo strong {
+  display: block;
+  color: var(--gray-100);
+  line-height: 1.6;
+}
+
+.authorInfo span {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+.author img {
+  box-sizing: initial;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  border: 3px solid var(--gray-800);
+  outline: 2px solid var(--blue-500);
 }

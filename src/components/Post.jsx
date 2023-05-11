@@ -3,21 +3,32 @@ export function Post() {
   return (
     <article className={styles.post}>
       <header>
-        {/*Criando divs para facilitar a construção do cogigo */}
         <div className={styles.author}>
-          {' '}
-          {/*div do autor*/}
           <img src="https://avatars.githubusercontent.com/u/67610170?v=4" />
           <div className={styles.authorInfo}>
-            {' '}
-            {/*div de informações do autor*/}
             <strong>Mateus Souza</strong>
             <span>Web Developer</span>
           </div>
         </div>
-
-        <time dateTime="2023-05-11 10:30:23">Publicado há 1h</time>
+        <time tittle="11 de maio de 2023" dateTime="2023-05-11 10:30:23">
+          Publicado há 1h
+        </time>
       </header>
+
+      <div className={styles.content}>
+        <p> Fala galeraa 👋 </p>
+        <p>
+          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
+          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
+        </p>
+        <p>
+          👉 <a href="">jane.design/doctorcare</a>
+        </p>
+        <p>
+          <a href="">#novoprojeto</a> <a href="">#nlw</a>{' '}
+          <a href="">#rocketseat</a>
+        </p>
+      </div>
     </article>
   )
 }
