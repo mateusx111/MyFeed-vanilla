@@ -1,16 +1,17 @@
+import { Comment } from './Comment'
 import styles from './Post.module.css'
 export function Post() {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img src="https://avatars.githubusercontent.com/u/67610170?v=4" />
+          <img src="https://avatars.githubusercontent.com/u/67610170?v=4" alt />
           <div className={styles.authorInfo}>
             <strong>Mateus Souza</strong>
             <span>Web Developer</span>
           </div>
         </div>
-        <time tittle="11 de maio de 2023" dateTime="2023-05-11 10:30:23">
+        <time title="11 de maio de 2023" dateTime="2023-05-11 10:30:23">
           Publicado há 1h
         </time>
       </header>
@@ -37,6 +38,9 @@ export function Post() {
           <button type="submit">Comentar</button>
         </footer>
       </form>
+      <div className={styles.commentList}>
+        <Comment />
+      </div>
     </article>
   )
 }
