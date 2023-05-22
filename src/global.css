@@ -8,10 +8,10 @@
   --gray-800: #202024;
   --gray-900: #121214;
 
-  --blue-500: #00a3ff;
+  --blue-500: #0057A8;
   --blue-800: #1654ce;
 
-  --red-500: #f75a68;
+  --red-500: #F75A68;
 }
 
 :focus {
@@ -33,7 +33,7 @@ body {
 
 body,
 input,
-testarea,
+textarea,
 button {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;

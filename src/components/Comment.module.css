@@ -50,4 +50,41 @@
   border-radius: 4px;
 }
 
+.commentContent header button:hover {
+  color: var(--red-500)
+}
 
+.commentContent p {
+  margin-top: 1rem;
+  color: var(--gray-400);
+}
+
+.commentBox footer {
+  margin-top: 1rem;
+}
+
+.commentBox footer button {  
+  background: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  border-radius:2px;
+}
+
+.commentBox footer button:hover {
+  color: var(--blue-800);
+}
+
+/* Dstanciar o icone je joinha todo icone importados no react são SVG*/
+.commentBox footer button svg {
+  margin-right: 0.5rem;
+}
+
+.commentBox footer button span::before {
+  content: "\2022"; /* bolinha do aplaudir*/
+  padding: 0 0.25rem;
+}
