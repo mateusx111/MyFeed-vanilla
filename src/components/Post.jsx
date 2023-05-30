@@ -1,46 +1,109 @@
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR' // colocando em português
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
-export function Post() {
+import { useState } from 'react'
+
+// props deesestruturadas
+export function Post({ author, publishedAt, content }) {
+  //se qualquer uma dessas props for alterada o post vai renderisar de novo
+
+  const [comments, setComments] = useState(['Post muito bacana, hein?!'])
+
+  const [newCommentText, setNewCommentText] = useState('') // estado deve ser iniciado com o  mesmo tipo de dado que vai receber
+
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'", // formato de data segundo a lib fns(consultar documentação)
+    { locale: ptBR },
+  )
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  })
+
+  function handleCreateNewComment() {
+    event.preventDefault() // evita o comportamento padrão evita mudar de pagina
+
+    setComments([...comments, newCommentText]) // não passo o que quero inserir mas sim NOVO VALOR
+    setNewCommentText('') // limpar o campo da textarea
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value)
+  }
+
+  function deleteComment(commentTodelete) {
+    //Função enviada como propriedade para o component Comment
+    //imutabilidaed -> as variáveis não soferm mutação, nós criamor um nova valor(um novo espaço na memória)
+    //Sera criada uma nova listra de comentários sem o comentário que foi deletado
+    const commentsWithoutDeletedOne = comments.filter((comment) => {
+      return comment !== commentTodelete
+    })
+    setComments(commentsWithoutDeletedOne)
+  }
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/Diego3g.png" /> NO reazct {/* */}
+          <Avatar src={author.avatarUrl} /> {/* */}
           <div className={styles.authorInfo}>
-            <strong>Diego Fernandes</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
-        <time title="11 de maio de 2023" dateTime="2023-05-11 10:30:23">
-          Publicado há 1h
+        <time
+          title={publishedDateFormatted}
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
         </time>
       </header>
 
       <div className={styles.content}>
-        <p> Fala galeraa 👋 </p>
-        <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
-        </p>
-        <p>
-          👉 <a href="">jane.design/doctorcare</a>
-        </p>
-        <p>
-          <a href="">#novoprojeto</a> <a href="">#nlw</a>{' '}
-          <a href="">#rocketseat</a>
-        </p>
+        {content.map((line) => {
+          // key sempre vai no primeiro elemento depois de return
+          if (line.type === 'paragraph') {
+            // eslint-disable-next-line spaced-comment
+            return <p key={line.content}>{line.content}</p> //usando propri texto como key, ela precisa ser única denrp da renderização de cada componente
+          } else if (line.type === 'link') {
+            return (
+              <p key={line.content}>
+                <a href="#">{line.content}</a>
+              </p>
+            )
+          }
+        })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe seu comentário..." />
+
+        <textarea
+          name="comment"
+          placeholder="Deixe seu comentário..."
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
+
         <footer>
           <button type="submit">Comentar</button>
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment />
+        {/* Listar comentarios */}
+        {comments.map((comment) => {
+          return (
+            <Comment
+              key={comment} // usando proprio texto como key
+              content={comment}
+              onDeleteComment={deleteComment} //Função enviada como propriedade para o component Comment
+            />
+          )
+        })}
       </div>
     </article>
   )

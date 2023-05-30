@@ -8,3 +8,15 @@
   gap: 2rem;
   align-items: flex-start;
 }
+
+/* TORNADO RESPONSIVO */
+
+@media (max-width: 768px){
+  html {
+    font-size: 87.5%;
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr; /* não vai m ais ter duas colunas somente uma ocupando a largura toda */
+  }
+}
