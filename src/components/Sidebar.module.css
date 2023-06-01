@@ -1,5 +1,5 @@
 .sidebar {
-  background: var(--gray-800);
+  background: var(--gray-100);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -21,7 +21,7 @@
 
 .profile strong {
   margin-top: 1rem;
-  color: #00b2ff;
+  color: var(--blue-500);
   line-height: 1.6;
 }
 
@@ -32,15 +32,15 @@
 }
 
 .sidebar footer {
-  border-top: 1px solid var(--gray-600);
+  border-top: 1px solid var(--gray-300);
   margin-top: 1.5rem;
   padding: 1.5rem 2rem 2rem;
 }
 
 .sidebar footer a {
   width: 100%;
-  background: transparent;
-  color: var(--blue-500);
+  background: var(--blue-500);
+  color: var(--white);
   border: 1px solid var(--blue-500);
   border-radius: 8px;
   height: 50px;
@@ -54,10 +54,10 @@
   justify-content: center;
 
   gap: 0.35rem;
-  transition: color 0.1s, background-color 0.1s;
+  transition: color 0.1s, background-color 0.5s;
 }
 
 .sidebar footer a:hover {
-  background: var(--blue-500);
+  background: var(--blue-800);
   color: #fff;
 }
