@@ -9,7 +9,7 @@ import { useState } from 'react'
 export function Post({ author, publishedAt, content }) {
   //se qualquer uma dessas props for alterada o post vai renderisar de novo
 
-  const [comments, setComments] = useState(['Post muito bacana, hein?!'])
+  const [comments, setComments] = useState([])
 
   const [newCommentText, setNewCommentText] = useState('') // estado deve ser iniciado com o  mesmo tipo de dado que vai receber
 
@@ -78,7 +78,9 @@ export function Post({ author, publishedAt, content }) {
           } else if (line.type === 'link') {
             return (
               <p key={line.content}>
-                <a href="#">{line.content}</a>
+                <a href="https://www.rocketseat.com.br/discover">
+                  {line.content}
+                </a>
               </p>
             )
           }
